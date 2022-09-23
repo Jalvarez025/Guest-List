@@ -17,3 +17,17 @@ header {
     justify-content: space-evenly;
     font-size: 25px;
 }
+
+.section2 {
+    background-color: green;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.list {
+    height: 700px;
+    width: 50%;
+    background-color: green;
+    border: 10px solid black;
+}
