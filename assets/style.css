@@ -1,8 +1,19 @@
 header {
     background-color: orange;
     height: 200px;
+    border: 10px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 100px;
+}
+
+.addName {
+    background-color: purple;
+    color: white;
+    border: 10px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 25px;
 }
