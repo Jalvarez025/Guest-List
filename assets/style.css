@@ -40,3 +40,14 @@ h3 {
     border: 10px solid black;
     font-size: 25px;
 }
+
+.entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}  
+
+.entryContainer {
+    margin: 5px 10px;
+} 
