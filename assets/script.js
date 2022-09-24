@@ -1,30 +1,32 @@
 var eName = document.getElementById("name");
 var eSubmit = document.querySelector("#submit");
 
+var guestArray = [];
 
 eSubmit.addEventListener("click", function ()
 {
-    console.log(eName.value);
-    if (eName.value != "")
+    var flag = true;
+
+    if (guestArray.length > 0)
     {
-        console.log("Click");
+        for (let i = 0; i < guestArray.length; i++)
+        {
+            if (eName.value == guestArray[i])
+            {
+                flag = false;
+            }
+        }
+    }
+    
+    if (flag && eName.value != "" && guestArray.length >= 0)
+    {
+        guestArray.push(eName.value);
+
         var guest = document.createElement("li");
         var node = document.createTextNode(eName.value);
         guest.appendChild(node);
+
         var element = document.getElementById("all");
         element.appendChild(guest);
     }
-    
 })
-
-
-// //create guest and list item tag
-// const guest = document.createElement("li");
-
-// //text from the textarea must be the guests name
-// const node = document.createTextNode("This is new.");
-
-// //append to unordered list
-// guest.appendChild(node);
-// const element = document.getElementById("all");
-// element.appendChild(guest);
