@@ -33,7 +33,7 @@ h3 {
 }
 
 .list {
-    height: 700px;
+    min-height: 925px;
     width: 50%;
     background-color: green;
     color: white;
