@@ -79,9 +79,12 @@ eSubmit.addEventListener("click", function ()
 
         //Add entry class to guest list item
         guest.classList.add("entry")
-        //Add container class to both p tag and two buttons
+        //Add class to style both p tag and container for two buttons
         guestName.classList.add("entryContainer");
         container.classList.add("entryContainer");
+        //Add class to style buttons
+        btn1.classList.add("entryBtn");
+        btn2.classList.add("entryBtn");
 
         //Create element for unordered list called all
         var element = document.getElementById("all");
