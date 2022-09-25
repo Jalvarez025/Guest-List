@@ -97,15 +97,33 @@ function AddToAttendance(name)
     const attendance_content = document.createElement('div');
     const attendance_entry_el = document.createElement('input');
 
+    const attendance_actions_el = document.createElement('div');
+    attendance_actions_el.classList.add('actions');
+
+    const attendance_delete_el = document.createElement('button');
+    attendance_delete_el.classList.add('delete');
+    attendance_delete_el.classList.add('entryBtn');
+    attendance_delete_el.innerText = 'Delete';
+
     attendance_entry_el.type = 'text';
     attendance_entry_el.value = name;
     attendance_entry_el.setAttribute('readonly', 'readonly');
     attendance_entry_el.setAttribute('id', 'guestName');
     attendance_name.classList.add('name');
 
+    attendance_content.setAttribute('id', 'content');
+    attendance_actions_el.setAttribute('id', 'actions');
+
     attendance_content.appendChild(attendance_entry_el);
+    attendance_actions_el.appendChild(attendance_delete_el);
     attendance_name.appendChild(attendance_content);
+    attendance_name.appendChild(attendance_actions_el);
     attendance_el.appendChild(attendance_name);
+
+    attendance_delete_el.addEventListener('click', (e) => 
+    {
+        attendance_el.removeChild(attendance_name);
+    });
 }
 
 
