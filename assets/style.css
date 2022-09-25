@@ -14,18 +14,27 @@ h3 {
     text-decoration: underline;
 }
 
-#addName {
+#new-guest-form {
     background-color: purple;
     color: white;
     border: 10px solid black;
+    min-height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+    margin: 0;
 }
 
-.prompt {
-    margin: 25px 10px;
+#new-guest-input {
+    height: 30px;
+    margin: 10px
+
+}
+
+#submit {
+    height: 30px;
+    margin: 10px
+
 }
 
 #section2 {
@@ -41,18 +50,33 @@ h3 {
     font-size: 25px;
 }
 
-.entry {
+.name {
     display: flex;
     align-items: center;
     justify-content: space-between;
     
 }  
 
-.entryContainer {
+#guestName {
+    display: flex;
+    font-size: 15px;
     margin: 5px 10px;
+}
+
+.actions {
+    margin: 0px 10px;
 } 
 
 .entryBtn {
     display: inline-flex;
     margin: 0px 5px;
 }
+
+#attendingName {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    margin: 5px 10px;
+}
+
+

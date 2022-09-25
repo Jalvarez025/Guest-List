@@ -8,20 +8,31 @@
         <header>
             <h1>Guest List</h1>
         </header>
-        <section id = "addName">
-            <h2 class = "prompt">Enter name:</h2>
+        <form id = "new-guest-form">
+            <input 
+                type = "text"
+                name = "new-guest-input"
+                id = "new-guest-input"
+                placeholder="Add name to list..." />
+            <input 
+                type = "submit"
+                id = "submit"
+                value = "Add" />
+
+            <!-- <h2 class = "prompt">Enter name:</h2>
             <textarea id = "name" class = "prompt" placeholder="Add name to list..."></textarea>
-            <button id = "submit" class = "prompt">Add</button>
-        </section>
+            <button id = "submit" class = "prompt">Add</button> -->
+        </form>
         <section id = "section2">
             <section class = "list">
                 <h3>Guest List</h3>
-                <ul id = "all">
-
-                </ul>
+                <div id = "allGuests">
+                </div>
             </section>
             <section class = "list">
                 <h3>Attendance</h3>
+                <div id = "allAttending">
+                </div>
             </section>
         </section>
         <script src="./assets/script.js"></script>
