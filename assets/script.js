@@ -1,6 +1,7 @@
 window.addEventListener('load', () => 
 {
     guests = JSON.parse(localStorage.getItem('guests')) || [];
+    attendance = JSON.parse(localStorage.getItem('attendance')) || [];
     const nameInput = document.querySelector('#new-guest-input');
     const newGuestForm = document.querySelector('#new-guest-form');
 
@@ -22,6 +23,7 @@ window.addEventListener('load', () =>
     });
 
     DisplayGuests()
+    AddToAttendance()
 });
 
 
@@ -93,6 +95,62 @@ function DisplayGuests()
             guests = guests.filter(t => t != guest);
             localStorage.setItem('guests', JSON.stringify(guests));
             DisplayGuests()
+        });
+
+        name_RSVP_el.addEventListener('click', e => {
+
+            const attending = {
+                content: guest.content
+            }
+
+            attendance.push(attending);
+
+            localStorage.setItem('attendance', JSON.stringify(attendance));
+
+            AddToAttendance()
+
+            guests = guests.filter(t => t != guest);
+            localStorage.setItem('guests', JSON.stringify(guests));
+            DisplayGuests()
+        });
+        
+    });
+}
+
+function AddToAttendance()
+{
+    const attendance_el = document.querySelector("#allAttending");
+
+    attendance_el.innerHTML = "";
+
+    attendance.forEach(attending => {
+        const attendance_name = document.createElement('div');
+        const attendance_content = document.createElement('div');
+
+        const attendance_actions_el = document.createElement('div');
+        attendance_actions_el.classList.add('actions');
+
+        const attendance_delete_el = document.createElement('button');
+        attendance_delete_el.classList.add('delete');
+        attendance_delete_el.classList.add('entryBtn');
+        attendance_delete_el.innerText = 'Delete';
+
+        attendance_content.innerHTML = `<input id="guestContent" type="text" value="${attending.content}" readonly>`;
+
+
+        attendance_name.classList.add('name');
+
+        attendance_content.setAttribute('id', 'content');
+        attendance_actions_el.setAttribute('id', 'actions');
+        attendance_actions_el.appendChild(attendance_delete_el);
+        attendance_name.appendChild(attendance_content);
+        attendance_name.appendChild(attendance_actions_el);
+        attendance_el.appendChild(attendance_name);
+
+        attendance_delete_el.addEventListener('click', (e) => {
+            attendance = attendance.filter(t => t != attending);
+            localStorage.setItem('attendance', JSON.stringify(attendance));
+            AddToAttendance()
         });
     });
 }
