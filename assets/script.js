@@ -135,7 +135,7 @@ function DisplayGuests()
         });
 
         //Add function to RSVP button
-        name_RSVP_el.addEventListener('click', e => {
+        name_RSVP_el.addEventListener('click', (e) => {
 
             //Create attending object with a content attribute that will contain the guest content
             const attending = {
