@@ -1,216 +1,216 @@
-//Function when the window loads
-window.addEventListener('load', () => 
-{
-    //Checks local storage for guests and attendance
-    guests = JSON.parse(localStorage.getItem('guests')) || [];
-    attendance = JSON.parse(localStorage.getItem('attendance')) || [];
+// //Function when the window loads
+// window.addEventListener('load', () => 
+// {
+//     //Checks local storage for guests and attendance
+//     guests = JSON.parse(localStorage.getItem('guests')) || [];
+//     attendance = JSON.parse(localStorage.getItem('attendance')) || [];
 
-    //Create elements from the form and the input
-    const nameInput = document.querySelector('#new-guest-input');
-    const newGuestForm = document.querySelector('#new-guest-form');
+//     //Create elements from the form and the input
+//     const nameInput = document.querySelector('#new-guest-input');
+//     const newGuestForm = document.querySelector('#new-guest-form');
 
-    //Run function when form it submitted
-    newGuestForm.addEventListener('submit', e =>
-    {
-        //Will not clear
-        e.preventDefault();
+//     //Run function when form it submitted
+//     newGuestForm.addEventListener('submit', e =>
+//     {
+//         //Will not clear
+//         e.preventDefault();
 
-        //Create guest object with a content attribute that will contain the input value
-        const guest = {
-            content: nameInput.value
-        }
+//         //Create guest object with a content attribute that will contain the input value
+//         const guest = {
+//             content: nameInput.value
+//         }
 
-        //Push guest object to local storage array for guests
-        guests.push(guest);
+//         //Push guest object to local storage array for guests
+//         guests.push(guest);
 
-        //Set local storage for guests
-        localStorage.setItem('guests', JSON.stringify(guests));
+//         //Set local storage for guests
+//         localStorage.setItem('guests', JSON.stringify(guests));
 
-        //Reset input
-        e.target.reset();
+//         //Reset input
+//         e.target.reset();
 
-        DisplayGuests()
-    });
+//         DisplayGuests()
+//     });
 
-    DisplayGuests()
-    AddToAttendance()
-});
+//     DisplayGuests()
+//     AddToAttendance()
+// });
 
 
-function DisplayGuests() 
-{
-    //Create element for the location you want to append guest entries
-    const guestList = document.querySelector('#allGuests');
+// function DisplayGuests() 
+// {
+//     //Create element for the location you want to append guest entries
+//     const guestList = document.querySelector('#allGuests');
 
-    //Initialize list
-    guestList.innerHTML = "";
+//     //Initialize list
+//     guestList.innerHTML = "";
 
-    //Run for each to display all guest in guests
-    guests.forEach(guest =>
-    {
-        //Create parent div w/ class name
-        const name_el = document.createElement('div');
-        name_el.classList.add('name');
+//     //Run for each to display all guest in guests
+//     guests.forEach(guest =>
+//     {
+//         //Create parent div w/ class name
+//         const name_el = document.createElement('div');
+//         name_el.classList.add('name');
 
-        //Create content div w/ class content
-        const name_content_el = document.createElement('div');
-        name_content_el.classList.add('content');
+//         //Create content div w/ class content
+//         const name_content_el = document.createElement('div');
+//         name_content_el.classList.add('content');
 
-        //Change inner HTML to contain value as the guest content use template literals
-        name_content_el.innerHTML = `<input id="guestContent" type="text" value="${guest.content}" readonly>`;
+//         //Change inner HTML to contain value as the guest content use template literals
+//         name_content_el.innerHTML = `<input id="guestContent" type="text" value="${guest.content}" readonly>`;
 
-        //Append content to name div
-        name_el.appendChild(name_content_el);
+//         //Append content to name div
+//         name_el.appendChild(name_content_el);
 
-        //Create actions div w/ class actions
-        const name_actions_el = document.createElement('div');
-        name_actions_el.classList.add('actions');
+//         //Create actions div w/ class actions
+//         const name_actions_el = document.createElement('div');
+//         name_actions_el.classList.add('actions');
 
-        //Create edit button w/ class edit and entryBtn w/ inner text as Edit
-        const name_edit_el = document.createElement('button');
-        name_edit_el.classList.add('edit');
-        name_edit_el.classList.add('entryBtn');
-        name_edit_el.innerText = 'Edit';
+//         //Create edit button w/ class edit and entryBtn w/ inner text as Edit
+//         const name_edit_el = document.createElement('button');
+//         name_edit_el.classList.add('edit');
+//         name_edit_el.classList.add('entryBtn');
+//         name_edit_el.innerText = 'Edit';
 
-        //Create delete button w/ class delete and entryBtn w/ inner text as Delete
-        const name_delete_el = document.createElement('button');
-        name_delete_el.classList.add('delete');
-        name_delete_el.classList.add('entryBtn');
-        name_delete_el.innerText = 'Delete';
+//         //Create delete button w/ class delete and entryBtn w/ inner text as Delete
+//         const name_delete_el = document.createElement('button');
+//         name_delete_el.classList.add('delete');
+//         name_delete_el.classList.add('entryBtn');
+//         name_delete_el.innerText = 'Delete';
 
-        //Create RSVP button w/ class rsvp and entryBtn w/ inner text as RSVP
-        const name_RSVP_el = document.createElement('button');
-        name_RSVP_el.classList.add('rsvp');
-        name_RSVP_el.classList.add('entryBtn');
-        name_RSVP_el.innerText = 'RSVP';
+//         //Create RSVP button w/ class rsvp and entryBtn w/ inner text as RSVP
+//         const name_RSVP_el = document.createElement('button');
+//         name_RSVP_el.classList.add('rsvp');
+//         name_RSVP_el.classList.add('entryBtn');
+//         name_RSVP_el.innerText = 'RSVP';
 
-        //Append buttons to action div
-        name_actions_el.appendChild(name_edit_el);
-        name_actions_el.appendChild(name_delete_el);
-        name_actions_el.appendChild(name_RSVP_el);
+//         //Append buttons to action div
+//         name_actions_el.appendChild(name_edit_el);
+//         name_actions_el.appendChild(name_delete_el);
+//         name_actions_el.appendChild(name_RSVP_el);
 
-        //Append action to name div
-        name_el.appendChild(name_actions_el);
+//         //Append action to name div
+//         name_el.appendChild(name_actions_el);
 
-        //Append name div to guest list div
-        guestList.appendChild(name_el);
+//         //Append name div to guest list div
+//         guestList.appendChild(name_el);
 
-        //Add function to edit button
-        name_edit_el.addEventListener('click', (e) => 
-        {
-            //Create input element by selecting the input inside the content div
-            const input = name_content_el.querySelector('input');
+//         //Add function to edit button
+//         name_edit_el.addEventListener('click', (e) => 
+//         {
+//             //Create input element by selecting the input inside the content div
+//             const input = name_content_el.querySelector('input');
 
             
-            //Check inner text all lower equals edit
-            if (name_edit_el.innerText.toLowerCase() == "edit")
-            {
-                //First click change inner text to save, remove readonly, focus
-                name_edit_el.innerText = "Save";
-                input.removeAttribute("readonly");
-                input.focus();
-            }
-            else
-            {
-                //Second click change inner text to Edit, set readonly
-                name_edit_el.innerText = "Edit";
-                input.setAttribute("readonly", "readonly");
+//             //Check inner text all lower equals edit
+//             if (name_edit_el.innerText.toLowerCase() == "edit")
+//             {
+//                 //First click change inner text to save, remove readonly, focus
+//                 name_edit_el.innerText = "Save";
+//                 input.removeAttribute("readonly");
+//                 input.focus();
+//             }
+//             else
+//             {
+//                 //Second click change inner text to Edit, set readonly
+//                 name_edit_el.innerText = "Edit";
+//                 input.setAttribute("readonly", "readonly");
 
-                //Take guest content and set equal to input value
-                guest.content = input.value;
-                //Set local storage for guests
-                localStorage.setItem('guests', JSON.stringify(guests));
-                DisplayGuests()
-            }
-        });
+//                 //Take guest content and set equal to input value
+//                 guest.content = input.value;
+//                 //Set local storage for guests
+//                 localStorage.setItem('guests', JSON.stringify(guests));
+//                 DisplayGuests()
+//             }
+//         });
 
-        //Add function to delete button
-        name_delete_el.addEventListener('click', (e) =>
-        {
-            //Filter function for guests that sets the array to contain all guests but one
-            guests = guests.filter(t => t != guest);
-            //Set local storage for guests
-            localStorage.setItem('guests', JSON.stringify(guests));
-            DisplayGuests()
-        });
+//         //Add function to delete button
+//         name_delete_el.addEventListener('click', (e) =>
+//         {
+//             //Filter function for guests that sets the array to contain all guests but one
+//             guests = guests.filter(t => t != guest);
+//             //Set local storage for guests
+//             localStorage.setItem('guests', JSON.stringify(guests));
+//             DisplayGuests()
+//         });
 
-        //Add function to RSVP button
-        name_RSVP_el.addEventListener('click', (e) => {
+//         //Add function to RSVP button
+//         name_RSVP_el.addEventListener('click', (e) => {
 
-            //Create attending object with a content attribute that will contain the guest content
-            const attending = {
-                content: guest.content
-            }
+//             //Create attending object with a content attribute that will contain the guest content
+//             const attending = {
+//                 content: guest.content
+//             }
 
-            //Push attending object to local storage array for attendance
-            attendance.push(attending);
+//             //Push attending object to local storage array for attendance
+//             attendance.push(attending);
 
-            //Set local storage for attendance
-            localStorage.setItem('attendance', JSON.stringify(attendance));
+//             //Set local storage for attendance
+//             localStorage.setItem('attendance', JSON.stringify(attendance));
 
-            AddToAttendance()
+//             AddToAttendance()
 
-            //Delete guest from guests and reset local storage
-            guests = guests.filter(t => t != guest);
-            localStorage.setItem('guests', JSON.stringify(guests));
-            DisplayGuests()
-        });
+//             //Delete guest from guests and reset local storage
+//             guests = guests.filter(t => t != guest);
+//             localStorage.setItem('guests', JSON.stringify(guests));
+//             DisplayGuests()
+//         });
         
-    });
-}
+//     });
+// }
 
-function AddToAttendance()
-{
-    //Create element for the location you want to append attendance entries
-    const attendance_el = document.querySelector("#allAttending");
+// function AddToAttendance()
+// {
+//     //Create element for the location you want to append attendance entries
+//     const attendance_el = document.querySelector("#allAttending");
 
-    //Initialize inner HTML
-    attendance_el.innerHTML = "";
+//     //Initialize inner HTML
+//     attendance_el.innerHTML = "";
 
-    //Run for each to display all attending in attendance
-    attendance.forEach(attending => {
-        //Create name div for attendance
-        const attendance_name = document.createElement('div');
-        //Create content div w/ id content
-        const attendance_content = document.createElement('div');
-        attendance_content.setAttribute('id', 'content');
+//     //Run for each to display all attending in attendance
+//     attendance.forEach(attending => {
+//         //Create name div for attendance
+//         const attendance_name = document.createElement('div');
+//         //Create content div w/ id content
+//         const attendance_content = document.createElement('div');
+//         attendance_content.setAttribute('id', 'content');
 
-        //Create actions div w/ class actions w/ id actions
-        const attendance_actions_el = document.createElement('div');
-        attendance_actions_el.classList.add('actions');
-        attendance_actions_el.setAttribute('id', 'actions');
+//         //Create actions div w/ class actions w/ id actions
+//         const attendance_actions_el = document.createElement('div');
+//         attendance_actions_el.classList.add('actions');
+//         attendance_actions_el.setAttribute('id', 'actions');
 
-        //Create delete button w/ class delete entryBtn w/ inner HTML Delete
-        const attendance_delete_el = document.createElement('button');
-        attendance_delete_el.classList.add('delete');
-        attendance_delete_el.classList.add('entryBtn');
-        attendance_delete_el.innerText = 'Delete';
+//         //Create delete button w/ class delete entryBtn w/ inner HTML Delete
+//         const attendance_delete_el = document.createElement('button');
+//         attendance_delete_el.classList.add('delete');
+//         attendance_delete_el.classList.add('entryBtn');
+//         attendance_delete_el.innerText = 'Delete';
 
-        //Set content inner HTML as input id guestContent type text and value equal to attending content
-        attendance_content.innerHTML = `<input id="guestContent" type="text" value="${attending.content}" readonly>`;
+//         //Set content inner HTML as input id guestContent type text and value equal to attending content
+//         attendance_content.innerHTML = `<input id="guestContent" type="text" value="${attending.content}" readonly>`;
 
-        //Add class name to name div
-        attendance_name.classList.add('name');
+//         //Add class name to name div
+//         attendance_name.classList.add('name');
 
-        //Append delete button to actions div
-        attendance_actions_el.appendChild(attendance_delete_el);
-        //Append content to name div
-        attendance_name.appendChild(attendance_content);
-        //Append actions to name
-        attendance_name.appendChild(attendance_actions_el);
-        //Append name to attendance list
-        attendance_el.appendChild(attendance_name);
+//         //Append delete button to actions div
+//         attendance_actions_el.appendChild(attendance_delete_el);
+//         //Append content to name div
+//         attendance_name.appendChild(attendance_content);
+//         //Append actions to name
+//         attendance_name.appendChild(attendance_actions_el);
+//         //Append name to attendance list
+//         attendance_el.appendChild(attendance_name);
 
-        //Add function to delete button 
-        attendance_delete_el.addEventListener('click', (e) => {
-            //Filter attending out of attendance
-            attendance = attendance.filter(t => t != attending);
-            //Set local storage
-            localStorage.setItem('attendance', JSON.stringify(attendance));
-            AddToAttendance()
-        });
-    });
-}
+//         //Add function to delete button 
+//         attendance_delete_el.addEventListener('click', (e) => {
+//             //Filter attending out of attendance
+//             attendance = attendance.filter(t => t != attending);
+//             //Set local storage
+//             localStorage.setItem('attendance', JSON.stringify(attendance));
+//             AddToAttendance()
+//         });
+//     });
+// }
 
 
 //Version 2
