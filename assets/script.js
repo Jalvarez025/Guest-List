@@ -1,3 +1,87 @@
+window.addEventListener('load', () =>
+{
+    console.log('Window loaded!');
+    guestArr = JSON.parse(localStorage.getItem('guestArr')) || [];
+    eform = document.querySelector('#new-guest-form');
+    eAddInput = document.querySelector('#new-guest-input');
+
+    eform.addEventListener('submit', (e) =>
+    {
+        e.preventDefault();
+        const guest = {
+            content: eAddInput.value
+        }
+        guestArr.push(guest);
+        localStorage.setItem('guestArr', JSON.stringify(guestArr));
+        e.target.reset();
+        DisplayGuests()
+    });
+
+    DisplayGuests()
+});
+
+function DisplayGuests()
+{
+    const guestList = document.querySelector('#allGuests');
+    guestList.innerHTML = "";
+    guestArr.forEach(guest => 
+    {
+        const guestListEntry = document.createElement('div');
+        guestListEntry.classList.add('name');
+
+        const guestListContent = document.createElement('div');
+        guestListContent.setAttribute('id', 'guestContent');
+
+        guestListContent.innerHTML = `<input type="text" value="${guest.content}" readonly>`;
+
+        const guestListActions = document.createElement('div');
+        guestListActions.classList.add('actions');
+
+        const guestListEdit = document.createElement('button');
+        guestListEdit.classList.add('entryBtn');
+        guestListEdit.innerText = 'Edit';
+
+        const guestListDelete = document.createElement('button');
+        guestListDelete.classList.add('entryBtn');
+        guestListDelete.innerText = 'Delete';
+
+        guestListActions.appendChild(guestListEdit);
+        guestListActions.appendChild(guestListDelete);
+        guestListEntry.appendChild(guestListContent);
+        guestListEntry.appendChild(guestListActions);
+
+        guestList.appendChild(guestListEntry);
+
+        guestListEdit.addEventListener('click', (e) =>
+        {
+            const input = guestListContent.querySelector('input');
+            if (guestListEdit.innerText.toLowerCase() == 'edit')
+            {
+                guestListEdit.innerText = 'Save';
+                input.removeAttribute('readonly');
+                input.focus();
+            }
+            else{
+                guestListEdit.innerText = 'Edit';
+                input.setAttribute('readonly', 'readonly');
+                guest.content = input.value;
+                localStorage.setItem('guestArr', JSON.stringify(guestArr));
+                DisplayGuests()
+            }
+            
+        });
+
+        guestListDelete.addEventListener('click', (e) => 
+        {
+            guestArr = guestArr.filter(t => t != guest);
+            localStorage.setItem('guestArr', JSON.stringify(guestArr));
+            DisplayGuests()
+        });
+
+        });
+}
+
+
 // //Function when the window loads
 // window.addEventListener('load', () => 
 // {

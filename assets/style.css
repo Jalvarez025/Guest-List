@@ -43,7 +43,8 @@ h3 {
 
 .list {
     min-height: 925px;
-    width: 50%;
+    /* width: 50%; */
+    width: 100%;
     background-color: green;
     color: white;
     border: 10px solid black;
